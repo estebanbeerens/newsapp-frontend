@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@import '~@angular/material/theming';
+@import './assets/scss/material-theme';
+
+@import './assets/scss/variables';
+
+@import './assets/scss/footer';
+@import './assets/scss/toolbar';
+@import './assets/scss/sideNav-main-panel';
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+}
+
+body {
+	line-height: 1;
+	background-color: $background-color;
+}
+
+button {
+    outline: none !important;
+}

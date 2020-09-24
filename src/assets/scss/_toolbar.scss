@@ -1,0 +1,36 @@
+@import './variables';
+
+.toolbar {
+    background-color: transparent !important;
+
+    &.header {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 18px !important;
+    }
+}
+
+.logo {
+    height: $header-size;
+    padding: 7px .7rem;
+
+    margin: 10px;
+
+    img {
+        height: $header-size - 15px;
+    }
+
+    .logo-text {
+        font-family: Montserrat, sans-serif;
+        letter-spacing: 1px;
+        font-size: 16px;
+    }
+
+    .login {
+        padding: 0 !important;
+        margin: -10px 0 15px -10px;
+    }
+}
+
+.menu-spacer {
+    flex: 1 1 auto;
+}

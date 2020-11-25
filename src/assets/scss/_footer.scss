@@ -1,6 +1,6 @@
 @import './variables';
 
-.footer{
+.news-footer{
     padding: 24px 10px;
 
     &.footer-default{
@@ -11,11 +11,7 @@
         float: left;
         padding-left: 0;
     }
-
-    .pull-right {
-      float: right; 
-    }
-
+    
     ul{
         margin-bottom: 0;
         padding: 0;
@@ -38,9 +34,10 @@
         }
     }
 
-    .copyright{
+    .news-copyright{
         font-size: 0.8571em;
         line-height: 1.8;
+        float: right; 
     }
 
     &:after{

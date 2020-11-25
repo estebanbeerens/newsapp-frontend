@@ -1,28 +1,25 @@
-<mat-toolbar class="toolbar header">
+<mat-toolbar class="news-toolbar">
     <mat-toolbar-row>
+
         <button mat-icon-button (click)="toggle();">
-        <ng-container *ngIf="sideNavToggled$ | async; then thenTemplate; else elseTemplate"></ng-container>
-        <ng-template #thenTemplate>
-            <mat-icon>clear</mat-icon>
-        </ng-template>
-        <ng-template #elseTemplate>
-            <mat-icon>menu</mat-icon>
-        </ng-template>
+            <ng-container *ngIf="sideNavToggled$ | async; then thenTemplate; else elseTemplate"></ng-container>
+            <ng-template #thenTemplate>
+                <mat-icon>clear</mat-icon>
+            </ng-template>
+            <ng-template #elseTemplate>
+                <mat-icon>menu</mat-icon>
+            </ng-template>
         </button>
 
-        <div class="logo">
-        <img src="assets/img/logo_rect.png">
+        <div class="news-logo">
+            <img src="assets/img/logo_rect.png">
         </div>
-        <span class="menu-spacer"></span>
+        <span class="news-menu-spacer"></span>
         
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>settings</mat-icon>
+        <button mat-stroked-button [routerLink]="['/auth']">
+            <mat-icon class="mr-2">exit_to_app</mat-icon>
+            <span>Aanmelden</span>
         </button>
-        <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>cake</mat-icon>
-            <span>Have some cake</span>
-        </button>
-        </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
+<div class="news-toolbar-border"></div>

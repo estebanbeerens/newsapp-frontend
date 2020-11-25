@@ -1,0 +1,38 @@
+<img src="assets/img/logo_rect.png" class="news-logo">
+<div class="container">
+    <h2>Login</h2>
+    <form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
+        <mat-form-field class="w-100">
+            <mat-label>Gebruikersnaam</mat-label>
+
+            <input matInput formControlName="login" type="text">
+
+            <mat-error *ngIf="generalForm.controls['login'].invalid">
+                Gebruikersnaam is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-3">
+            <mat-label>Wachtwoord</mat-label>
+
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+
+            <button mat-button matSuffix mat-icon-button aria-label="Toggle visibility" (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="generalForm.controls['password'].invalid">
+                Wachtwoord is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <button type="button" class="mr-2" mat-button [routerLink]="['/app']">
+            Annuleren
+          </button>
+        <button mat-raised-button type="submit" color="primary" class="float-right"
+            [disabled]="!generalForm.dirty || generalForm.invalid">
+            <mat-icon class="mr-2">login</mat-icon>
+            <span>Log in</span>
+        </button>
+    </form>
+</div>

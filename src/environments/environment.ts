@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  simpleBarOptions: { autoHide: true, scrollbarMinSize: 100 }
+  apiUrl: "https://localhost:5001/api"
 };
 
 /*

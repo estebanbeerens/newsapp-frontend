@@ -1,31 +1,29 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { RouteInfo, ROUTES } from 'src/app/core/routing/route-info';
-import { environment } from 'src/environments/environment';
-
-import * as CoreActions from 'src/app/core/state/actions';
-import * as CoreSelectors from 'src/app/core/state/selectors';
-import * as AppState from 'src/app/state/app.state';
+import { AuthFacade } from 'src/app/auth/state/facade';
+import { RouteInfo } from 'src/app/core/models/routes/route-info';
+import { routes } from 'src/app/core/models/routes/routes';
+import { CoreFacade } from 'src/app/core/state/facade';
 
 @Component({
-  selector: 'app-core-sidenav',
+  selector: 'news-core-sidenav',
   templateUrl: './core-sidenav.component.html',
   styleUrls: ['./core-sidenav.component.scss']
 })
-export class CoreSidenavComponent implements OnInit, OnDestroy {
-  
+export class CoreSidenavComponent implements OnInit {
+
   sideNavToggled$: Observable<boolean>;
   mobileQuery: MediaQueryList;
+  userName: string = '';
   
-  simplebarOptions = environment.simpleBarOptions;
   public menuItems: RouteInfo[];
 
   constructor(
-    private store: Store<AppState.State>,
-    changeDetectorRef: ChangeDetectorRef, 
-    media: MediaMatcher
+    private coreFacade: CoreFacade,
+    private changeDetectorRef: ChangeDetectorRef, 
+    private media: MediaMatcher,
+    private authFace: AuthFacade,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -35,8 +33,9 @@ export class CoreSidenavComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   ngOnInit(): void {
-    this.sideNavToggled$ = this.store.select(CoreSelectors.sidenav.toggled);
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.sideNavToggled$ = this.coreFacade.getSideNavToggled();
+    this.menuItems = routes.filter(menuItem => menuItem);
+    this.authFace.getCurrentUser().subscribe(user => this.userName = user.firstName + ' ' + user.lastName);
   }
 
   ngOnDestroy(): void {
@@ -44,7 +43,7 @@ export class CoreSidenavComponent implements OnInit, OnDestroy {
   }
 
   onBackdropClick(): void {
-    this.store.dispatch(CoreActions.sidenav.toggle.execute());
+    this.coreFacade.toggleSideNav();
   }
 
 }

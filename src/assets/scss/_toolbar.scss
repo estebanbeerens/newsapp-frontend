@@ -1,15 +1,10 @@
 @import './variables';
 
-.toolbar {
+.news-toolbar {
     background-color: transparent !important;
-
-    &.header {
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 18px !important;
-    }
 }
 
-.logo {
+.news-logo {
     height: $header-size;
     padding: 7px .7rem;
 
@@ -19,18 +14,23 @@
         height: $header-size - 15px;
     }
 
-    .logo-text {
+    .news-logo-text {
         font-family: Montserrat, sans-serif;
         letter-spacing: 1px;
         font-size: 16px;
     }
 
-    .login {
+    .news-login {
         padding: 0 !important;
         margin: -10px 0 15px -10px;
     }
 }
 
-.menu-spacer {
+.news-menu-spacer {
     flex: 1 1 auto;
+}
+
+.news-toolbar-border {
+    border-top: 1px solid #ccc;
+    margin: 0 10px;
 }

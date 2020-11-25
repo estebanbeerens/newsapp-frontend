@@ -1,38 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { SimplebarAngularModule } from 'simplebar-angular';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoreFooterComponent } from './components/core-footer/core-footer.component';
 import { CoreToolbarComponent } from './components/core-toolbar/core-toolbar.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreRoutingModule } from 'src/app/core/core-routing.module';
+import { CoreContentComponent } from './components/content/content.component';
 import { CoreSidenavComponent } from './components/core-sidenav/core-sidenav.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
-import { CoreEffects, CoreReducers } from 'src/app/core/state';
-import { EffectsModule } from '@ngrx/effects';
+import { coreReducer } from 'src/app/core/state/reducer';
+import { authReducer } from 'src/app/auth/state/reducer';
 
 
 @NgModule({
-  declarations: [CoreFooterComponent, CoreToolbarComponent, CoreSidenavComponent],
+  declarations: [CoreFooterComponent, CoreToolbarComponent, CoreContentComponent, CoreSidenavComponent],
   imports: [
     CommonModule,
-    HttpClientModule,
-    RouterModule,
-    MatToolbarModule,
+    CoreRoutingModule,
+    SharedModule,
     MatSidenavModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    SimplebarAngularModule,
-    StoreModule.forFeature('core', CoreReducers),
-    // EffectsModule.forFeature(CoreEffects)
+    StoreModule.forFeature('core', coreReducer),
+    StoreModule.forFeature('auth', authReducer)
   ],
-  exports: [CoreFooterComponent, CoreToolbarComponent, CoreSidenavComponent]
+  exports: [
+    CoreFooterComponent, 
+    CoreToolbarComponent,
+    CoreSidenavComponent
+  ]
 })
 export class CoreModule { }

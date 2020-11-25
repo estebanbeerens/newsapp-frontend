@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-core-footer',
+  selector: 'news-core-footer',
   templateUrl: './core-footer.component.html',
   styleUrls: ['./core-footer.component.scss']
 })
-export class CoreFooterComponent implements OnInit {
+export class CoreFooterComponent {
   
   copyrightDate: Date = new Date();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
 }

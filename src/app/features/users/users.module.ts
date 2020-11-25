@@ -1,0 +1,39 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { UsersRoutingModule } from './users-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { UserEffects } from 'src/app/features/users/state/effects';
+import { userReducer } from 'src/app/features/users/state/reducer';
+import { UserApiService } from 'src/app/features/users/services/user-api.service';
+import { UsersDetailsShellComponent } from './components/users-details/users-details-shell/users-details-shell.component';
+import { UsersDetailsPresenterComponent } from './components/users-details/users-details-presenter/users-details-presenter.component';
+import { UsersInputPresenterComponent } from './components/users-input/users-input-presenter/users-input-presenter.component';
+import { UsersInputShellComponent } from './components/users-input/users-input-shell/users-input-shell.component';
+import { UsersOverviewPresenterComponent } from './components/users-overview/users-overview-presenter/users-overview-presenter.component';
+import { UsersOverviewShellComponent } from './components/users-overview/users-overview-shell/users-overview-shell.component';
+
+
+@NgModule({
+  declarations: [
+    UsersDetailsShellComponent, 
+    UsersDetailsPresenterComponent, 
+    UsersInputPresenterComponent, 
+    UsersInputShellComponent, 
+    UsersOverviewPresenterComponent, 
+    UsersOverviewShellComponent
+  ],
+  imports: [
+    CommonModule,
+    UsersRoutingModule,
+    SharedModule,
+    StoreModule.forFeature('users', userReducer),
+    EffectsModule.forFeature([UserEffects])
+  ],
+  providers: [
+    UserApiService
+  ]
+})
+export class UsersModule { }

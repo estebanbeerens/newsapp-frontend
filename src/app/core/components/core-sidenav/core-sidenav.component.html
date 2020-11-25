@@ -1,49 +1,36 @@
 <mat-sidenav-container (backdropClick)="onBackdropClick()" 
                        class="example-sidenav-container">
 
-  <mat-sidenav id="sideNav" mode="push" [opened]="sideNavToggled$ | async" class="sidebar"
+  <mat-sidenav id="sideNav" [opened]="sideNavToggled$ | async" class="sidebar"
                [mode]="mobileQuery.matches ? 'over' : 'side'"
                [fixedInViewport]="mobileQuery.matches" >
 
-    <ngx-simplebar [options]="simplebarOptions">
+    <ng-scrollbar visibility="hover">
 
-      <div class="nav-profile">
-        <button mat-button [matMenuTriggerFor]="profileMenu" class="p-1">
+      <div class="news-nav-profile">
           <img src="assets/img/placeholder.jpg">
-          <span class="profile-text">
-            Esteban Beerens
+          <span class="news-profile-text">
+            {{userName}}
           </span>
-        </button>
       </div>
-
-      <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>account_box</mat-icon>
-          <span>View profile</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Log out</span>
-        </button>
-      </mat-menu>
     
       <mat-nav-list *ngFor="let menuItem of menuItems">
-        <div *ngIf="menuItem.category" class="category">{{menuItem.category}}</div>
+        <div *ngIf="menuItem.category" class="news-category">{{menuItem.category}}</div>
         <a mat-list-item [routerLink]="[menuItem.path]" 
-          class="navItem {{menuItem.class}}" routerLinkActive="nav-active">
+          class="news-navItem {{menuItem.class}}" routerLinkActive="news-nav-active">
           <mat-icon>{{menuItem.icon}}</mat-icon>
           <span>{{menuItem.title}}</span>
         </a>
       </mat-nav-list>
-    </ngx-simplebar>
+    </ng-scrollbar>
   </mat-sidenav>
 
-  <mat-sidenav-content class="main-panel">
-    <app-core-toolbar></app-core-toolbar>
-    <div class="content">
-      <router-outlet></router-outlet>
+  <mat-sidenav-content class="news-main-panel">
+    <news-core-toolbar></news-core-toolbar>
+    <div class="news-content">
+        <router-outlet></router-outlet>
     </div>
-    <app-core-footer></app-core-footer>
+    <news-core-footer></news-core-footer>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

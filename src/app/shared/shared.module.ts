@@ -10,12 +10,22 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
+import { SharedSpinnerComponent } from 'src/app/shared/components/shared-spinner/shared-spinner.component';
+import { SharedToolbarComponent } from 'src/app/shared/components/shared-toolbar/shared-toolbar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SharedSpinnerComponent,
+    SharedToolbarComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     RouterModule,
@@ -29,7 +39,9 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     FormsModule,
     ReactiveFormsModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    SharedSpinnerComponent,
+    SharedToolbarComponent
   ]
 })
 export class SharedModule { }

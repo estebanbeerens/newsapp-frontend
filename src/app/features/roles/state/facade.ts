@@ -12,7 +12,7 @@ export class RoleFacade {
 
     constructor(private store: Store) {}
 
-    getOverviewResults(): Observable<IRole[]> {
+    getAll(): Observable<IRole[]> {
         this.store.dispatch(actions.getOverview());
         return this.store.select(selectors.overviewResults);
     }

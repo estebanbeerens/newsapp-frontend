@@ -12,7 +12,7 @@ export class ArticleStatusFacade {
 
     constructor(private store: Store) {}
 
-    getOverviewResults(): Observable<IArticleStatus[]> {
+    getAll(): Observable<IArticleStatus[]> {
         this.store.dispatch(actions.getOverview());
         return this.store.select(selectors.overviewResults);
     }

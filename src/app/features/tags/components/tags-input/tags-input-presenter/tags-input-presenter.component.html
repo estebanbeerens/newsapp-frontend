@@ -1,1 +1,27 @@
-<p>tags-input-presenter works!</p>
+<div class="news-dialogTitle">
+    <h2 *ngIf="!isNew && tag">{{tag.name | titlecase}} bewerken</h2>
+    <h2 *ngIf="isNew">Categorie aanmaken</h2>
+</div>
+<form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
+
+    <mat-form-field class="col-12 w-100">
+        <mat-label>Naam</mat-label>
+
+        <input matInput formControlName="name" type="text">
+
+        <mat-error *ngIf="generalForm.controls['name'].invalid">
+            Naam is vereist
+        </mat-error>
+    </mat-form-field>
+    
+    <div class="float-right">
+        <button type="button" class="mr-2" mat-button (click)="onCloseDialog()">
+            Annuleren
+          </button>
+        <button mat-raised-button type="submit" color="primary"
+            [disabled]="!generalForm.dirty || generalForm.invalid">
+            <mat-icon class="mr-2">how_to_reg</mat-icon>
+            <span>Aanmaken</span>
+        </button>
+    </div>
+</form>

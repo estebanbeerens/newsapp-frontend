@@ -10,7 +10,7 @@ export const routes: RouteInfo[] = [
     },
     {
         path: '/app/tags',
-        title: 'Labels',
+        title: 'Categorieën',
         icon: 'local_offer',
         class: '',
         category: 'Configuratie'

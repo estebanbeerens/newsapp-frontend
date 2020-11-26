@@ -11,7 +11,7 @@ import { IUser } from 'src/app/features/users/models/entities/user';
   templateUrl: './users-overview-presenter.component.html',
   styleUrls: ['./users-overview-presenter.component.scss']
 })
-export class UsersOverviewPresenterComponent implements AfterViewInit {
+export class UsersOverviewPresenterComponent implements AfterViewInit, OnChanges {
 
   selected = new FormControl("0");
   selectedRoleId: number;
@@ -79,7 +79,6 @@ export class UsersOverviewPresenterComponent implements AfterViewInit {
   }
 
   remove(userID: number): void {
-    console.log(userID);
     this.onRemove.emit(userID);
   }
 

@@ -1,1 +1,7 @@
-<p>tags-input-shell works!</p>
+<news-tags-input-presenter
+    [isNew]="isNew"
+    [generalForm]="generalForm"
+    [tag]="tag$ | async"
+    (closeDialog)="closeDialog()"
+    (submitForm)="submitForm($event)"
+></news-tags-input-presenter>

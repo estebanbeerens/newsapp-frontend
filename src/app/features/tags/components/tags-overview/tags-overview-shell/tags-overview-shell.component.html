@@ -1,1 +1,12 @@
-<p>tags-overview-shell works!</p>
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <news-shared-toolbar
+        [title]="title"
+        (clickedAdd)="create()"
+    ></news-shared-toolbar>
+    <news-tags-overview-presenter
+        [tags]="tags$ | async"
+        (onEdit)="edit($event)"
+        (onRemove)="remove($event)"
+    ></news-tags-overview-presenter>
+</div>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ITag } from 'src/app/features/tags/models/entities/tag';
+import { ITag, ITagInitialValue } from 'src/app/features/tags/models/entities/tag';
+import { ITagForm } from 'src/app/features/tags/models/form-models/tag-form';
 import * as actions from './actions';
 import * as selectors from './selectors';
 
@@ -21,11 +22,6 @@ export class TagFacade {
         return this.store.select(selectors.overviewIsLoading);
     }
 
-    getDetails(id: number): Observable<ITag> {
-        this.store.dispatch(actions.getDetails({id}));
-        return this.store.select(selectors.detailsResult);
-    }
-
     getDetailsIsLoading(): Observable<boolean> {
         return this.store.select(selectors.detailsIsLoading);
     }
@@ -42,11 +38,24 @@ export class TagFacade {
         }
     }
 
-    create(inputModel: ITag): void {
+    getDetails(): Observable<ITag> {
+        return this.store.select(selectors.detailsResult);
+    }
+
+    create(formOutput: ITagForm): void {
+        const inputModel: ITag = {
+            ...ITagInitialValue,
+            name: formOutput.name
+        }
         this.store.dispatch(actions.create({inputModel}));
     }
 
-    update(id: number, inputModel: ITag): void {
+    update(id: number, formOutput: ITagForm): void {
+        const inputModel: ITag = {
+            ...ITagInitialValue,
+            name: formOutput.name,
+            tagID: id
+        }
         this.store.dispatch(actions.update({id , inputModel}));
     }
 

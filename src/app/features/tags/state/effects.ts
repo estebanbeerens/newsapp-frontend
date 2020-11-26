@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { act, Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { empty, of } from 'rxjs';
@@ -19,16 +19,8 @@ export class TagEffects {
     getOverview$ = createEffect(() => {
         return this.actions$
             .pipe(
-                ofType(actions.getOverview),
-                withLatestFrom(
-                    this.store.pipe(select(selectors.overviewRequiresReload))
-                ),
-                switchMap(([, requiresReload]) => {
-                    if (!requiresReload) {
-                        this.store.dispatch(actions.getOverviewNoChanges());
-                        return empty();
-                    }
-
+                ofType(actions.getOverview, actions.createSuccess, actions.updateSuccess, actions.removeSuccess),
+                switchMap(() => {
                     return this.tagApiService.getAll()
                         .pipe(
                             map(response => (actions.getOverviewSuccess({ responseModel: response }))),

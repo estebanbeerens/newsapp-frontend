@@ -5,9 +5,9 @@
         <mat-form-field class="w-100">
             <mat-label>Gebruikersnaam</mat-label>
 
-            <input matInput formControlName="login" type="text">
+            <input matInput formControlName="username" type="text">
 
-            <mat-error *ngIf="generalForm.controls['login'].invalid">
+            <mat-error *ngIf="generalForm.controls['username'].invalid">
                 Gebruikersnaam is vereist
             </mat-error>
         </mat-form-field>

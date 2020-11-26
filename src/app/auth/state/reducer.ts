@@ -34,10 +34,26 @@ export const authReducer = createReducer<IAuthState>(
         }
     }),
 
-    on(actions.logout, (state): IAuthState => {
+    // Register
+    on(actions.register, (state): IAuthState => {
         return {
             ...state,
-            authenticatedUser: IUserInitialValue
+            error: '',
+            isLoading: true,
+        }
+    }),
+    on(actions.registerSuccess, (state): IAuthState => {
+        return {
+            ...state,
+            error: '',
+            isLoading: false,
+        }
+    }),
+    on(actions.registerFailure, (state, action): IAuthState => {
+        return {
+            ...state,
+            error: action.error,
+            isLoading: false,
         }
     })
 )

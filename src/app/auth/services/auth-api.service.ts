@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICredentials } from 'src/app/auth/models/entities/credentials';
-import { IUser } from 'src/app/features/users/models/entities/user';
+import { IUser as IObject } from 'src/app/features/users/models/entities/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,11 +12,17 @@ export class AuthApiService {
     baseUrl = environment.apiUrl + '/user';
 
     constructor(private http: HttpClient) { }
+
+    register(inputModel: IObject): Observable<IObject> {
+        const requestUrl = `${this.baseUrl}`;
+
+        return this.http.post<IObject>(requestUrl, inputModel)
+    }
     
-    authenticate(inputModel: ICredentials): Observable<IUser> {
+    authenticate(inputModel: IObject): Observable<IObject> {
         const requestUrl = `${this.baseUrl}/authenticate`;
         
-        return this.http.post<IUser>(requestUrl, inputModel);
+        return this.http.post<IObject>(requestUrl, inputModel);
     }
     
 }

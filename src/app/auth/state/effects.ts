@@ -28,4 +28,18 @@ export class AuthEffects {
                 })
             );
     });
+
+    register$ = createEffect(() => {
+        return this.actions$
+            .pipe(
+                ofType(actions.register),
+                switchMap((payload) => {
+                    return this.authApiService.register(payload.inputModel)
+                        .pipe(
+                            map(responseModel => actions.registerSuccess({ responseModel })),
+                            catchError(error => of(actions.registerFailure({ error })))
+                        );
+                })
+            );
+    })
 }

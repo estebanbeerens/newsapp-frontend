@@ -1,0 +1,5 @@
+<news-core-toolbar-presenter
+    [authenticatedUser]="authenticatedUser$ | async"
+    [sideNavToggled]="sideNavToggled$ | async"
+    (onToggle)="toggle()"
+></news-core-toolbar-presenter>

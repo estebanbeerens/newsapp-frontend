@@ -6,14 +6,16 @@ import { authReducer } from 'src/app/auth/state/reducer';
 import { AuthEffects } from 'src/app/auth/state/effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthShellComponent } from './components/auth-shell/auth-shell.component';
-import { AuthPresenterComponent } from './components/auth-presenter/auth-presenter.component';
 import { AuthApiService } from 'src/app/auth/services/auth-api.service';
+import { AuthLoginPresenterComponent } from 'src/app/auth/components/auth-login/auth-login-presenter/auth-presenter.component';
+import { AuthLoginShellComponent } from 'src/app/auth/components/auth-login/auth-login-shell/auth-shell.component';
+import { AuthRegisterShellComponent } from './components/auth-register/auth-register-shell/auth-register-shell.component';
+import { AuthRegisterPresenterComponent } from './components/auth-register/auth-register-presenter/auth-register-presenter.component';
 
 @NgModule({
   declarations: [
-    AuthShellComponent, 
-    AuthPresenterComponent
+    AuthLoginShellComponent, 
+    AuthLoginPresenterComponent, AuthRegisterShellComponent, AuthRegisterPresenterComponent
   ],
   imports: [
     CommonModule,

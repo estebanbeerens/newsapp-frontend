@@ -1,11 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { ICredentials } from 'src/app/auth/models/entities/credentials';
 import { IUser } from 'src/app/features/users/models/entities/user';
 
 // Login
 export const login = createAction(
     '[Auth] Login',
-    props<{ inputModel: ICredentials }>()
+    props<{ inputModel: IUser }>()
 );
 
 export const loginSuccess = createAction(
@@ -18,7 +17,18 @@ export const loginFailure = createAction(
     props<{ error: string }>()
 );
 
-// Login
-export const logout = createAction(
-    '[Auth] Logout'
+// Register
+export const register = createAction(
+    '[Auth] Register',
+    props<{ inputModel: IUser }>()
+);
+
+export const registerSuccess = createAction(
+    '[Auth] Register Success',
+    props<{ responseModel: IUser }>()
+);
+
+export const registerFailure = createAction(
+    '[Auth] Register Failure',
+    props<{ error: string }>()
 );

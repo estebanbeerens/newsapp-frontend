@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IUser } from 'src/app/features/users/models/entities/user';
+import { IRegister } from 'src/app/auth/models/form-models/register';
+import { IUser, IUserInitialValue } from 'src/app/features/users/models/entities/user';
 import * as actions from './actions';
 import * as selectors from './selectors';
 
@@ -30,8 +31,17 @@ export class UserFacade {
         return this.store.select(selectors.detailsIsLoading);
     }
 
-    create(inputModel: IUser): void {
+    create(formValue: IRegister): Observable<IUser> {
+        const inputModel: IUser = {
+            ...IUserInitialValue,
+            firstName: formValue.firstName,
+            lastName: formValue.lastName,
+            username: formValue.username,
+            password: formValue.password,
+            email: formValue.email
+        }
         this.store.dispatch(actions.create({inputModel}));
+        return this.store.select(selectors.detailsResult);
     }
 
     remove(id: number): void {

@@ -8,9 +8,8 @@
     <ng-scrollbar visibility="hover">
 
       <div class="news-nav-profile">
-          <img src="assets/img/placeholder.jpg">
           <span class="news-profile-text">
-            {{userName}}
+            Admin panel
           </span>
       </div>
     
@@ -26,7 +25,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="news-main-panel">
-    <news-core-toolbar></news-core-toolbar>
+    <news-core-toolbar-shell></news-core-toolbar-shell>
     <div class="news-content">
         <router-outlet></router-outlet>
     </div>

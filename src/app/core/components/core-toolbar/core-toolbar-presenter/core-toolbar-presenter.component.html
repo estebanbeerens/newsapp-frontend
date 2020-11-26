@@ -1,0 +1,39 @@
+<mat-toolbar class="news-toolbar">
+    <mat-toolbar-row>
+
+        <button mat-icon-button *ngIf="authenticatedUser.role.name == 'Admin'" (click)="toggle();">
+            <ng-container *ngIf="sideNavToggled; then clear; else menu"></ng-container>
+            <ng-template #clear>
+                <mat-icon>clear</mat-icon>
+            </ng-template>
+            <ng-template #menu>
+                <mat-icon>menu</mat-icon>
+            </ng-template>
+        </button>
+
+        <div class="news-logo">
+            <img src="assets/img/logo_rect.png">
+        </div>
+        <span class="news-menu-spacer"></span>
+
+        <ng-container *ngIf="authenticatedUser != userInitialValue; else login">
+            <button mat-button disabled>
+                <span class="text-info m-3">Ingelogd</span>
+                <span class="text-dark m-1">{{authenticatedUser.firstName}}&nbsp;{{authenticatedUser.lastName}}</span>
+                <span class="text-dark">({{authenticatedUser.role.name}})</span>
+            </button>
+        </ng-container>
+        <ng-template #login>
+            <button mat-stroked-button class="mr-2" [routerLink]="['/auth/login']">
+                <mat-icon class="mr-2">exit_to_app</mat-icon>
+                <span>Aanmelden</span>
+            </button>
+            <button mat-stroked-button [routerLink]="['/auth/register']">
+                <mat-icon class="mr-2">how_to_reg</mat-icon>
+                <span>Registreren</span>
+            </button>
+        </ng-template>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="news-toolbar-border"></div>

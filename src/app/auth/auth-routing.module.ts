@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthShellComponent } from 'src/app/auth/components/auth-shell/auth-shell.component';
+import { AuthLoginShellComponent } from 'src/app/auth/components/auth-login/auth-login-shell/auth-shell.component';
+import { AuthRegisterShellComponent } from 'src/app/auth/components/auth-register/auth-register-shell/auth-register-shell.component';
 
 const routes: Routes = [
 	{
-		path: '',
-		component: AuthShellComponent
+		path: 'login',
+		component: AuthLoginShellComponent
+	},
+	{
+		path: 'register',
+		component: AuthRegisterShellComponent
 	},
     {
       path: '**',
       pathMatch: 'full',
-      redirectTo: '',
+      redirectTo: 'login',
     }
 ];
 

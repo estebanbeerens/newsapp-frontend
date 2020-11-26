@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ICredentials } from 'src/app/auth/models/entities/credentials';
+import { ICredentials } from 'src/app/auth/models/form-models/credentials';
 import { AuthFacade } from 'src/app/auth/state/facade';
-import { IUser } from 'src/app/features/users/models/entities/user';
+import { IUser, IUserInitialValue } from 'src/app/features/users/models/entities/user';
 
 @Component({
-  selector: 'news-auth-shell',
+  selector: 'news-auth-login-shell',
   templateUrl: './auth-shell.component.html',
   styleUrls: ['./auth-shell.component.scss']
 })
-export class AuthShellComponent implements OnInit {
+export class AuthLoginShellComponent implements OnInit {
 
   authenticatedUser$: Observable<IUser>;
   generalForm: FormGroup;
@@ -24,25 +24,24 @@ export class AuthShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticatedUser$ = this.authFacade.getCurrentUser();
-    this.loadForm();
-    // this.authenticatedUser$.subscribe((user) => {
-    //   if(user != null) {
-    //     this.router.navigate(['/app']);
-    //   } else {
-    //     this.loadForm()
-    //   }
-    // });
+    this.authenticatedUser$.subscribe(user => {
+      if(user != IUserInitialValue) {
+        this.router.navigate(['/app']);
+      } else {
+        this.loadForm()
+      }
+    });
   }
 
   loadForm(): void {
     this.generalForm = this.formBuilder.group({
-      login: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   submitForm(credentials: ICredentials): void {
-    // this.authFacade.login(credentials);
+    this.authenticatedUser$ = this.authFacade.login(credentials)
   }
 
 }

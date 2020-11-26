@@ -27,7 +27,7 @@ export class CoreSidenavComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef, 
     private media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 1200px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

@@ -48,60 +48,6 @@ export const userReducer = createReducer<IUserState>(
     };
   }),
 
-  // Details
-  on(actions.getDetails, (state): IUserState => {
-    return {
-      ...state,
-      details: {
-        ...IUserDetailsStateInitialValue,
-        isLoading: true,
-        error: ''
-      }
-    };
-  }),
-  on(actions.getDetailsSuccess, (state, action): IUserState => {
-    return {
-      ...state,
-      details: {
-        ...state.details,
-        result: action.responseModel,
-        isLoading: false,
-        error: ''
-      }
-    };
-  }),
-  on(actions.getDetailsFailure, (state, action): IUserState => {
-    return {
-      ...state,
-      details: {
-        ...state.details,
-        isLoading: false,
-        error: action.error
-      }
-    };
-  }),
-  on(actions.getOverviewNoChanges, (state): IUserState => {
-    return {
-      ...state,
-      overview: {
-        ...state.overview,
-        isLoading: false
-      }
-    };
-  }),
-
-  // Reset Details
-  on(actions.resetDetails, (state): IUserState => {
-    return {
-      ...state,
-      details: {
-        ...IUserDetailsStateInitialValue,
-        isLoading: false,
-        error: ''
-      }
-    };
-  }),
-
   // Create
   on(actions.createSuccess, (state, action): IUserState => {
     return {
@@ -135,7 +81,8 @@ export const userReducer = createReducer<IUserState>(
       ...state,
       overview: {
         ...state.overview,
-        requiresReload: true
+        requiresReload: true,
+        isLoading: true
       },
     };
   }),

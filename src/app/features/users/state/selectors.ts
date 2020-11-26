@@ -23,25 +23,3 @@ export const overviewError = createSelector(
     getUserFeatureState,
     (state) => state.overview.error
 );
-
-
-// Details
-export const detailsResult= createSelector(
-    getUserFeatureState,
-    (state) => state.details.result
-);
-
-export const detailsRequiresReload = createSelector(
-    getUserFeatureState,
-    (state) => state.details.requiresReload
-);
-
-export const detailsIsLoading = createSelector(
-    getUserFeatureState,
-    (state) => state.details.isLoading
-);
-
-export const detailsError = createSelector(
-    getUserFeatureState,
-    (state) => state.details.error
-);

@@ -8,8 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { UserEffects } from 'src/app/features/users/state/effects';
 import { userReducer } from 'src/app/features/users/state/reducer';
 import { UserApiService } from 'src/app/features/users/services/user-api.service';
-import { UsersDetailsShellComponent } from './components/users-details/users-details-shell/users-details-shell.component';
-import { UsersDetailsPresenterComponent } from './components/users-details/users-details-presenter/users-details-presenter.component';
 import { UsersInputPresenterComponent } from './components/users-input/users-input-presenter/users-input-presenter.component';
 import { UsersInputShellComponent } from './components/users-input/users-input-shell/users-input-shell.component';
 import { UsersOverviewPresenterComponent } from './components/users-overview/users-overview-presenter/users-overview-presenter.component';
@@ -20,8 +18,6 @@ import { RoleEffects } from 'src/app/features/roles/state/effects';
 
 @NgModule({
   declarations: [
-    UsersDetailsShellComponent, 
-    UsersDetailsPresenterComponent, 
     UsersInputPresenterComponent, 
     UsersInputShellComponent, 
     UsersOverviewPresenterComponent, 

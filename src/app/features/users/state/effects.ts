@@ -19,7 +19,7 @@ export class UserEffects {
     getOverview$ = createEffect(() => {
         return this.actions$
             .pipe(
-                ofType(actions.getOverview),
+                ofType(actions.getOverview, actions.removeSuccess),
                 withLatestFrom(
                     this.store.pipe(select(selectors.overviewRequiresReload))
                 ),

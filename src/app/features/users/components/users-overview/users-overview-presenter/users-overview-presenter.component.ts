@@ -19,7 +19,7 @@ export class UsersOverviewPresenterComponent implements AfterViewInit {
   @Input() users: IUser[];
   @Input() roles: IRole[];
   
-  @Output() delete = new EventEmitter<number>();
+  @Output() onRemove = new EventEmitter<number>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,9 +58,9 @@ export class UsersOverviewPresenterComponent implements AfterViewInit {
     }
   }
 
-  onDelete(userID: number): void {
+  remove(userID: number): void {
     console.log(userID);
-    this.delete.emit(userID);
+    this.onRemove.emit(userID);
   }
 
 }

@@ -21,32 +21,6 @@ export const getOverviewFailure = createAction(
 );
 
 
-// Get Details
-export const getDetails = createAction(
-    '[Users] Get Details',
-    props<{ id: number }>()
-);
-
-export const getDetailsNoChanges = createAction(
-    '[Users] Get Details No Changes'
-);
-
-export const getDetailsSuccess = createAction(
-    '[Users] Get Details Success',
-    props<{ responseModel: IUser }>()
-);
-
-export const getDetailsFailure = createAction(
-    '[Users] Get Details Failure',
-    props<{ error: string }>()
-);
-
-// Reset Details
-export const resetDetails = createAction(
-    '[Users] Reset Details'
-);
-
-
 // Create
 export const create = createAction(
     '[Users] Create',

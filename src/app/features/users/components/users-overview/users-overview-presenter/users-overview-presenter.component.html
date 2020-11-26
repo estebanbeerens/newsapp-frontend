@@ -51,11 +51,7 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button [routerLink]="['/app/users', element.userID, 'details']"
-                matTooltip="Details" mattooltip>
-          <mat-icon color="primary">open_in_full</mat-icon>
-        </button>
-        <button (click)="onDelete(element.userID)" mat-icon-button matTooltip="Verwijderen">
+        <button (click)="remove(element.userID)" mat-icon-button matTooltip="Verwijderen">
           <mat-icon>delete_outline</mat-icon>
         </button>
       </mat-cell>

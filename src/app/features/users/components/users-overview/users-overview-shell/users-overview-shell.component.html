@@ -6,5 +6,6 @@
     <news-users-overview-presenter
         [users]="users$ | async"
         [roles]="roles$ | async"
+        (onRemove)="remove($event)"
     ></news-users-overview-presenter>
 </div>

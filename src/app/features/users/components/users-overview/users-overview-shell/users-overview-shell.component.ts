@@ -29,4 +29,8 @@ export class UsersOverviewShellComponent implements OnInit {
     this.roles$ = this.roleFacade.getAll();
   }
 
+  remove(userID: number): void {
+    this.userFacade.remove(userID);
+  }
+
 }

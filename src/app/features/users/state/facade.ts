@@ -22,16 +22,7 @@ export class UserFacade {
         return this.store.select(selectors.overviewIsLoading);
     }
 
-    getDetails(id: number): Observable<IUser> {
-        this.store.dispatch(actions.getDetails({id}));
-        return this.store.select(selectors.detailsResult);
-    }
-
-    getDetailsIsLoading(): Observable<boolean> {
-        return this.store.select(selectors.detailsIsLoading);
-    }
-
-    create(formValue: IRegister): Observable<IUser> {
+    create(formValue: IRegister): void {
         const inputModel: IUser = {
             ...IUserInitialValue,
             firstName: formValue.firstName,
@@ -41,7 +32,6 @@ export class UserFacade {
             email: formValue.email
         }
         this.store.dispatch(actions.create({inputModel}));
-        return this.store.select(selectors.detailsResult);
     }
 
     remove(id: number): void {

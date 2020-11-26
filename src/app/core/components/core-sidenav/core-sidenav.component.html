@@ -8,9 +8,12 @@
     <ng-scrollbar visibility="hover">
 
       <div class="news-nav-profile">
-          <span class="news-profile-text">
+        <button mat-button disabled class="p-1">
+          <img src="assets/img/logo_square.png">
+          <span class="news-profile-text text-dark">
             Admin panel
           </span>
+        </button>
       </div>
     
       <mat-nav-list *ngFor="let menuItem of menuItems">

@@ -9,11 +9,14 @@ import { ArticlesOverviewShellComponent } from './components/articles-overview/a
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { MatCardModule } from '@angular/material/card';
 import { ArticleApiService } from 'src/app/features/articles/services/article-api.service';
 import { ArticleEffects } from 'src/app/features/articles/state/effects';
 import { articleReducer } from 'src/app/features/articles/state/reducer';
 import { ArticlesInputShellComponent } from './components/articles-input/articles-input-shell/articles-input-shell.component';
 import { ArticlesInputPresenterComponent } from './components/articles-input/articles-input-presenter/articles-input-presenter.component';
+import { TagEffects } from 'src/app/features/tags/state/effects';
+import { tagReducer } from 'src/app/features/tags/state/reducer';
 
 
 @NgModule({
@@ -29,8 +32,11 @@ import { ArticlesInputPresenterComponent } from './components/articles-input/art
     CommonModule,
     SharedModule,
     ArticlesRoutingModule,
+    MatCardModule,
     StoreModule.forFeature('articles', articleReducer),
-    EffectsModule.forFeature([ArticleEffects])
+    StoreModule.forFeature('tags', tagReducer),
+    EffectsModule.forFeature([ArticleEffects]),
+    EffectsModule.forFeature([TagEffects])
   ],
   providers: [
     ArticleApiService

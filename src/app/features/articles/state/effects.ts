@@ -20,15 +20,7 @@ export class ArticleEffects {
         return this.actions$
             .pipe(
                 ofType(actions.getOverview),
-                withLatestFrom(
-                    this.store.pipe(select(selectors.overviewRequiresReload))
-                ),
-                switchMap(([, requiresReload]) => {
-                    if (!requiresReload) {
-                        this.store.dispatch(actions.getOverviewNoChanges());
-                        return empty();
-                    }
-
+                switchMap(() => {
                     return this.articleApiService.getAll()
                         .pipe(
                             map(response => (actions.getOverviewSuccess({ responseModel: response }))),

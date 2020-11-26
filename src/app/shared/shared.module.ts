@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
@@ -34,9 +36,11 @@ import { SharedToolbarComponent } from 'src/app/shared/components/shared-toolbar
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatCheckboxModule,
     MatListModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     NgScrollbarModule,

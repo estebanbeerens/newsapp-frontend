@@ -1,1 +1,8 @@
-<p>articles-overview-shell works!</p>
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <news-articles-overview-presenter
+        [articles]="articles$ | async"
+        [tags]="tags$ | async"
+        (onRefresh)="refresh()"
+    ></news-articles-overview-presenter>
+</div>

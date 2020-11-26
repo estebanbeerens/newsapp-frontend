@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { IArticleStatus } from 'src/app/features/article-statuses/models/entities/article-status';
+import { IArticle } from 'src/app/features/articles/models/entities/article';
+import { ITag } from 'src/app/features/tags/models/entities/tag';
 
 @Component({
-  selector: 'app-articles-overview-presenter',
+  selector: 'news-articles-overview-presenter',
   templateUrl: './articles-overview-presenter.component.html',
   styleUrls: ['./articles-overview-presenter.component.scss']
 })
-export class ArticlesOverviewPresenterComponent implements OnInit {
+export class ArticlesOverviewPresenterComponent {
+  
+  selected = new FormControl("0");
+  selectedTagId: number;
+  
+  @Input() articles: IArticle[];
+  @Input() tags: ITag[];
 
-  constructor() { }
+  @Output() onRefresh = new EventEmitter();
 
-  ngOnInit(): void {
+  refresh(): void {
+    this.onRefresh.emit();
   }
 
 }

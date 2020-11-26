@@ -1,1 +1,6 @@
-<p>users-input-shell works!</p>
+<news-users-input-presenter
+    [generalForm]="generalForm"
+    [roles]="roles$ | async"
+    (closeDialog)="onCloseDialog()"
+    (submitForm)="submitForm($event)"
+></news-users-input-presenter>

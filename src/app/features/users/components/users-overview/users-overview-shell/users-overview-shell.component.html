@@ -2,6 +2,7 @@
 <div class="bg-white shadow">
     <news-shared-toolbar
         [title]="title"
+        (clickedAdd)="create()"
     ></news-shared-toolbar>
     <news-users-overview-presenter
         [users]="users$ | async"

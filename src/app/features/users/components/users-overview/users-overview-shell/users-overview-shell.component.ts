@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { IRole } from 'src/app/features/roles/models/entities/role';
 import { RoleFacade } from 'src/app/features/roles/state/facade';
+import { UsersInputShellComponent } from 'src/app/features/users/components/users-input/users-input-shell/users-input-shell.component';
 import { IUser } from 'src/app/features/users/models/entities/user';
 import { UserFacade } from 'src/app/features/users/state/facade';
 
@@ -20,13 +22,20 @@ export class UsersOverviewShellComponent implements OnInit {
 
   constructor(
     private userFacade: UserFacade,
-    private roleFacade: RoleFacade
+    private roleFacade: RoleFacade,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.isLoading$ = this.userFacade.getOverviewIsLoading();
     this.users$ = this.userFacade.getAll();
     this.roles$ = this.roleFacade.getAll();
+  }
+
+  create(): void {
+    const dialogRef = this.dialog.open(UsersInputShellComponent, {
+      width: '90%'
+    });
   }
 
   remove(userID: number): void {

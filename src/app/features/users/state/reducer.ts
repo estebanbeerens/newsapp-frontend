@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { IUserDetailsStateInitialValue } from 'src/app/features/users/models/state-models/user-details.state';
 import { IUserState, IUserStateInitialValue } from 'src/app/features/users/models/state-models/user.state';
 import * as actions from './actions';
 

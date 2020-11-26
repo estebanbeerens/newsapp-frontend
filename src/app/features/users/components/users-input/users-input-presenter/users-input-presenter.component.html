@@ -1,1 +1,85 @@
-<p>users-input-presenter works!</p>
+<div class="news-dialogTitle">
+    <h2>Gebruiker Aanmaken</h2>
+</div>
+<form [formGroup]="generalForm" (ngSubmit)="onSubmit(generalForm.value)">
+    <div class="row">
+        <mat-form-field class="col-6 w-100">
+            <mat-label>Voornaam</mat-label>
+
+            <input matInput formControlName="firstName" type="text">
+
+            <mat-error *ngIf="generalForm.controls['firstName'].invalid">
+                Voornaam is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-6 w-100">
+            <mat-label>Achternaam</mat-label>
+
+            <input matInput formControlName="lastName" type="text">
+
+            <mat-error *ngIf="generalForm.controls['lastName'].invalid">
+                Achternaam is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-6 w-100">
+            <mat-label>Gebruikersnaam</mat-label>
+
+            <input matInput formControlName="username" type="text">
+
+            <mat-error *ngIf="generalForm.controls['username'].invalid">
+                Gebruikersnaam is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-6 w-100">
+            <mat-label>E-mail</mat-label>
+
+            <input matInput formControlName="email" type="email">
+
+            <mat-error *ngIf="generalForm.controls['email'].invalid">
+                E-mail is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-6 w-100 mb-3">
+            <mat-label>Rol</mat-label>
+
+            <mat-select matInput formControlName="roleID" type="email">
+                <mat-option *ngFor="let role of roles" [value]="role.roleID">
+                  {{role.name}}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="generalForm.controls['roleID'].invalid">
+                Rol is vereist
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="col-6 w-100 mb-3">
+            <mat-label>Wachtwoord</mat-label>
+
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" autocomplete="new-password">
+
+            <button type="button" mat-button matSuffix mat-icon-button aria-label="Toggle visibility" (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-error *ngIf="generalForm.controls['password'].invalid">
+                Wachtwoord is vereist
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="float-right">
+        <button type="button" class="mr-2" mat-button (click)="onCloseDialog()">
+            Annuleren
+          </button>
+        <button mat-raised-button type="submit" color="primary"
+            [disabled]="!generalForm.dirty || generalForm.invalid">
+            <mat-icon class="mr-2">how_to_reg</mat-icon>
+            <span>Aanmaken</span>
+        </button>
+    </div>
+</form>

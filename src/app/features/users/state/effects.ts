@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { act, Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { empty, of } from 'rxjs';
@@ -19,7 +19,7 @@ export class UserEffects {
     getOverview$ = createEffect(() => {
         return this.actions$
             .pipe(
-                ofType(actions.getOverview, actions.removeSuccess),
+                ofType(actions.getOverview, actions.removeSuccess, actions.createSuccess),
                 withLatestFrom(
                     this.store.pipe(select(selectors.overviewRequiresReload))
                 ),

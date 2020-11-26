@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { SharedSpinnerComponent } from 'src/app/shared/components/shared-spinner/shared-spinner.component';
 import { SharedToolbarComponent } from 'src/app/shared/components/shared-toolbar/shared-toolbar.component';
@@ -47,6 +48,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     NgScrollbarModule,

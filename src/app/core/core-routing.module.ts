@@ -11,7 +11,7 @@ const routes: Routes = [
 			{ path: '', redirectTo: 'articles', pathMatch: 'full' },
 			{ path: 'articles', loadChildren: () => import('../features/articles/articles.module').then(m => m.ArticlesModule) },
 			{ path: 'tags', loadChildren: () => import('../features/tags/tags.module').then(m => m.TagsModule), canActivate: [AdminGuard] },
-			{ path: 'users', loadChildren: () => import('../features/users/users.module').then(m => m.UsersModule), canActivate: [AdminGuard] },
+			{ path: 'users', loadChildren: () => import('../features/users/users.module').then(m => m.UsersModule) },
 			{ path: '**', redirectTo: 'articles' },
 		],
 	},

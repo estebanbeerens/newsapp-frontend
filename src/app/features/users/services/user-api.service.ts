@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser as IObject } from 'src/app/features/users/models/entities/user';
@@ -14,9 +14,16 @@ export class UserApiService {
     constructor(private http: HttpClient) { }
     
     getAll(): Observable<IObject[]> {
+
         const requestUrl = `${this.baseUrl}`;
 
-        return this.http.get<IObject[]>(requestUrl);
+        const token = localStorage.getItem('newsapp.accessToken');
+
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`
+        })
+
+        return this.http.get<IObject[]>(requestUrl, { headers } );
     }
 
     create(inputModel: IObject): Observable<IObject> {

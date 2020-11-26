@@ -14,6 +14,8 @@ import { UsersInputPresenterComponent } from './components/users-input/users-inp
 import { UsersInputShellComponent } from './components/users-input/users-input-shell/users-input-shell.component';
 import { UsersOverviewPresenterComponent } from './components/users-overview/users-overview-presenter/users-overview-presenter.component';
 import { UsersOverviewShellComponent } from './components/users-overview/users-overview-shell/users-overview-shell.component';
+import { roleReducer } from 'src/app/features/roles/state/reducer';
+import { RoleEffects } from 'src/app/features/roles/state/effects';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { UsersOverviewShellComponent } from './components/users-overview/users-o
     UsersRoutingModule,
     SharedModule,
     StoreModule.forFeature('users', userReducer),
-    EffectsModule.forFeature([UserEffects])
+    StoreModule.forFeature('roles', roleReducer),
+    EffectsModule.forFeature([UserEffects]),
+    EffectsModule.forFeature([RoleEffects])
   ],
   providers: [
     UserApiService

@@ -1,1 +1,10 @@
-<p>users-overview-shell works!</p>
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <news-shared-toolbar
+        [title]="title"
+    ></news-shared-toolbar>
+    <news-users-overview-presenter
+        [users]="users$ | async"
+        [roles]="roles$ | async"
+    ></news-users-overview-presenter>
+</div>

@@ -12,10 +12,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { SharedSpinnerComponent } from 'src/app/shared/components/shared-spinner/shared-spinner.component';
 import { SharedToolbarComponent } from 'src/app/shared/components/shared-toolbar/shared-toolbar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { SharedToolbarComponent } from 'src/app/shared/components/shared-toolbar
     MatFormFieldModule,
     MatCheckboxModule,
     MatListModule,
+    MatTooltipModule,
+    MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,

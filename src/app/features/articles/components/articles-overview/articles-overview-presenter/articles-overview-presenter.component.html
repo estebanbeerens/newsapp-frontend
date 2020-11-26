@@ -4,6 +4,11 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <div class="row m-2">
+    <mat-form-field appearance="outline" class="col-6">
+      <mat-label>Zoeken</mat-label>
+      <input matInput>
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
     <mat-form-field appearance="outline" class="col-5">
       <mat-label>Categorie</mat-label>
       <mat-select [(value)]="selectedTagId" [formControl]="selected">
@@ -11,11 +16,6 @@
           <mat-option *ngFor="let tag of tags" [value]="tag.tagID">{{tag.name}}</mat-option>
       </mat-select>
       <mat-icon matPrefix>filter_alt</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="col-6">
-      <mat-label>Zoeken</mat-label>
-      <input matInput>
-      <mat-icon matPrefix>search</mat-icon>
     </mat-form-field>
     <button mat-flat-button type="button" color="primary" class="col-1 mt-1 mb-4" (click)="refresh()">
         <mat-icon>refresh</mat-icon>

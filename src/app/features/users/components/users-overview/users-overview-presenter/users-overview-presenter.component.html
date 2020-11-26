@@ -1,12 +1,12 @@
 <div class="row bg-white mx-0 pt-2">
-    <div class="col-12">
+    <div class="col-6">
         <mat-form-field appearance="outline" class="w-100">
             <mat-icon matPrefix>search</mat-icon>
             <mat-label>Zoeken</mat-label>
             <input matInput (keyup)="applySearchFilter($event)" >
         </mat-form-field>
     </div>
-    <!-- <div class="col-6">
+    <div class="col-6">
       <mat-form-field appearance="outline" class="w-100"> 
         <mat-icon matPrefix>filter_alt</mat-icon>
         <mat-label>Rol</mat-label>
@@ -18,7 +18,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div> -->
+    </div>
 </div>
 
 <mat-table matSort [dataSource]="dataSource">

@@ -17,7 +17,7 @@ export const routes: RouteInfo[] = [
     },
     {
         path: '/app/users',
-        title: 'Gebruikers',
+        title: 'Accounts',
         icon: 'people_alt',
         class: '',
         category: ''

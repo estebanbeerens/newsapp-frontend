@@ -18,7 +18,7 @@ export class UsersOverviewShellComponent implements OnInit {
   users$: Observable<IUser[]>;
   roles$: Observable<IRole[]>;
 
-  title: string = "Overzicht gebruikers";
+  title: string = "Overzicht accounts";
 
   constructor(
     private userFacade: UserFacade,

@@ -40,7 +40,7 @@ export class UsersOverviewPresenterComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => this.dataSource.paginator = this.paginator); 
+    setTimeout(() => this.dataSource.paginator = this.paginator);
     this.dataSource.sort = this.sort;
   }
 
@@ -53,6 +53,26 @@ export class UsersOverviewPresenterComponent implements AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  applyRoleFilter(roleID: number) {
+    let filteredUsers: IUser[] = [];
+
+    if (roleID == 0) {
+      filteredUsers = this.users;
+    } else {
+      this.users.forEach((user) => {
+        if (user.roleID == roleID) {
+          filteredUsers.push(user);
+        }
+      });
+    }
+
+    this.initDataSource(filteredUsers);
+    
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

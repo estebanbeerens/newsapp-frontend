@@ -18,14 +18,18 @@
 
         <ng-container *ngIf="authenticatedUser != userInitialValue; else login">
             <button mat-button disabled>
-                <span class="text-info m-3">Ingelogd</span>
-                <span class="text-dark m-1">{{authenticatedUser.firstName}}&nbsp;{{authenticatedUser.lastName}}</span>
+                <span class="text-info mr-3">Ingelogd</span>
+                <span class="text-dark mr-1">{{authenticatedUser.firstName}}&nbsp;{{authenticatedUser.lastName}}</span>
                 <span class="text-dark">({{authenticatedUser.role.name}})</span>
+            </button>
+            <button mat-stroked-button (click)="logout()" [routerLink]="['/app']">
+                <mat-icon class="mr-2">exit_to_app</mat-icon>
+                <span>Uitloggen</span>
             </button>
         </ng-container>
         <ng-template #login>
             <button mat-stroked-button class="mr-2" [routerLink]="['/auth/login']">
-                <mat-icon class="mr-2">exit_to_app</mat-icon>
+                <mat-icon class="mr-2">login</mat-icon>
                 <span>Aanmelden</span>
             </button>
             <button mat-stroked-button [routerLink]="['/auth/register']">
@@ -33,6 +37,13 @@
                 <span>Registreren</span>
             </button>
         </ng-template>
+
+        <mat-menu #logoutMenu>
+            <button mat-menu-item>
+                <mat-icon class="mr-2">exit_to_app</mat-icon>
+                <span>Uitloggen</span>
+            </button>
+        </mat-menu>
 
     </mat-toolbar-row>
 </mat-toolbar>

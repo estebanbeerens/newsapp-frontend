@@ -28,6 +28,10 @@ export class AuthFacade {
         return this.store.select(selector.authenticatedUser);
     }
 
+    logout(): void {
+        this.store.dispatch(actions.logout());
+    }
+
     register(formValue: IRegister): void {
         const inputModel: IUser = {
             ...IUserInitialValue,

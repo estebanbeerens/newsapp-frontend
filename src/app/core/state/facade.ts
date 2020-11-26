@@ -28,4 +28,8 @@ export class CoreFacade {
     toggleSideNav(): void {
         this.store.dispatch(actions.toggleSideNav());
     }
+
+    setSideNavFalse(): void {
+        this.store.dispatch(actions.setSideNavFalse());
+    }
 }

@@ -6,7 +6,7 @@ import * as actions from './actions';
 export const coreReducer = createReducer<ICoreState>(
     ICoreStateInitialValue,
 
-    on(actions.toggleLoadingResults, (state, action): ICoreState =>{
+    on(actions.toggleLoadingResults, (state): ICoreState =>{
         return {
             ...state,
             content: {
@@ -15,11 +15,20 @@ export const coreReducer = createReducer<ICoreState>(
         }
     }),
 
-    on(actions.toggleSideNav, (state, action): ICoreState =>{
+    on(actions.toggleSideNav, (state): ICoreState =>{
         return {
             ...state,
             sidenav: {
                 toggled: !state.sidenav.toggled
+            }
+        }
+    }),
+
+    on(actions.setSideNavFalse, (state): ICoreState =>{
+        return {
+            ...state,
+            sidenav: {
+                toggled: false
             }
         }
     }),

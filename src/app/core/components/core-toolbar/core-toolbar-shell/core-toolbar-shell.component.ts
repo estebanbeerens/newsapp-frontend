@@ -29,4 +29,9 @@ export class CoreToolbarShellComponent implements OnInit {
     this.coreFacade.toggleSideNav();
   }
 
+  logout(): void {
+    this.authFacade.logout();
+    this.coreFacade.setSideNavFalse();
+  }
+
 }

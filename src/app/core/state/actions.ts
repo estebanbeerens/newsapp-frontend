@@ -7,3 +7,7 @@ export const toggleLoadingResults = createAction(
 export const toggleSideNav = createAction(
     '[SideNav] Toggle SideNav visible'
 );
+
+export const setSideNavFalse = createAction(
+    '[SideNav] Set SideNav invisible'
+);

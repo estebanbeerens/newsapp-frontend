@@ -14,9 +14,14 @@ export class CoreToolbarPresenterComponent {
   @Input() authenticatedUser: IUser;
 
   @Output() onToggle = new EventEmitter();
+  @Output() onLogout = new EventEmitter();
 
   toggle(): void {
     this.onToggle.emit();
+  }
+
+  logout(): void {
+    this.onLogout.emit();
   }
 
 }

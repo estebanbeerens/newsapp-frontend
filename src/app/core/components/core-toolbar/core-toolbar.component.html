@@ -1,7 +1,7 @@
 <mat-toolbar class="news-toolbar">
     <mat-toolbar-row>
 
-        <button mat-icon-button (click)="toggle();">
+        <button mat-icon-button *ngIf="isAdmin" (click)="toggle();">
             <ng-container *ngIf="sideNavToggled$ | async; then thenTemplate; else elseTemplate"></ng-container>
             <ng-template #thenTemplate>
                 <mat-icon>clear</mat-icon>

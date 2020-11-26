@@ -13,7 +13,12 @@ import { authReducer } from 'src/app/auth/state/reducer';
 
 
 @NgModule({
-  declarations: [CoreFooterComponent, CoreToolbarComponent, CoreContentComponent, CoreSidenavComponent],
+  declarations: [
+    CoreFooterComponent, 
+    CoreToolbarComponent, 
+    CoreContentComponent, 
+    CoreSidenavComponent
+  ],
   imports: [
     CommonModule,
     CoreRoutingModule,

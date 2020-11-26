@@ -5,6 +5,7 @@ import { AuthFacade } from 'src/app/auth/state/facade';
 import { RouteInfo } from 'src/app/core/models/routes/route-info';
 import { routes } from 'src/app/core/models/routes/routes';
 import { CoreFacade } from 'src/app/core/state/facade';
+import { IUser } from 'src/app/features/users/models/entities/user';
 
 @Component({
   selector: 'news-core-sidenav',
@@ -13,6 +14,7 @@ import { CoreFacade } from 'src/app/core/state/facade';
 })
 export class CoreSidenavComponent implements OnInit {
 
+  authenticatedUser$: Observable<IUser>;
   sideNavToggled$: Observable<boolean>;
   mobileQuery: MediaQueryList;
   userName: string = '';
@@ -21,9 +23,9 @@ export class CoreSidenavComponent implements OnInit {
 
   constructor(
     private coreFacade: CoreFacade,
+    private authFacade: AuthFacade,
     private changeDetectorRef: ChangeDetectorRef, 
-    private media: MediaMatcher,
-    private authFace: AuthFacade,
+    private media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -35,15 +37,23 @@ export class CoreSidenavComponent implements OnInit {
   ngOnInit(): void {
     this.sideNavToggled$ = this.coreFacade.getSideNavToggled();
     this.menuItems = routes.filter(menuItem => menuItem);
-    this.authFace.getCurrentUser().subscribe(user => this.userName = user.firstName + ' ' + user.lastName);
+    this.authenticatedUser$ = this.authFacade.getCurrentUser();
+    this.userName = this.getUsername();
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  getUsername(): string {
+    this.authFacade.getCurrentUser().subscribe((user) => {
+      return user.firstName + ' ' + user.lastName;
+    });
+    return 'Niet ingelogd'
   }
 
   onBackdropClick(): void {
     this.coreFacade.toggleSideNav();
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreContentComponent } from 'src/app/core/components/content/content.component';
+import { AdminGuard } from 'src/app/core/guards/admin.guard';
 
 const routes: Routes = [
 	{
@@ -9,8 +10,8 @@ const routes: Routes = [
 		children: [
 			{ path: '', redirectTo: 'articles', pathMatch: 'full' },
 			{ path: 'articles', loadChildren: () => import('../features/articles/articles.module').then(m => m.ArticlesModule) },
-			{ path: 'tags', loadChildren: () => import('../features/tags/tags.module').then(m => m.TagsModule) },
-			{ path: 'users', loadChildren: () => import('../features/users/users.module').then(m => m.UsersModule) },
+			{ path: 'tags', loadChildren: () => import('../features/tags/tags.module').then(m => m.TagsModule), canActivate: [AdminGuard] },
+			{ path: 'users', loadChildren: () => import('../features/users/users.module').then(m => m.UsersModule), canActivate: [AdminGuard] },
 			{ path: '**', redirectTo: 'articles' },
 		],
 	},

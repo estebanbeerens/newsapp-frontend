@@ -11,21 +11,19 @@ import { IUser } from 'src/app/features/users/models/entities/user';
 export class AdminGuard implements CanActivate {
 
   authenticatedUser$: Observable<IUser>;
-  sub: Subscription;
 
   constructor(private authFacade: AuthFacade, private router: Router) {}
 
   canActivate(): boolean {
-    this.sub = this.authFacade.getCurrentUser().subscribe((user) => {
-      if (user.role.name === "Admin") {
-        this.sub.unsubscribe();
-        return true
-      } else {
-        this.router.navigate(['/app']);
-        this.sub.unsubscribe();
-        return false;
-      }
+    let userCopy: IUser;
+    this.authFacade.getCurrentUser().subscribe((user) => {
+      userCopy = user
     });
-    return false
+    if (userCopy.role.name === "Admin") {
+      return true;
+    } else {
+      this.router.navigate(['/app']);
+      return false;
+    }
   }
 }

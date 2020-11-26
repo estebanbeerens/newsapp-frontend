@@ -24,7 +24,6 @@ export class AuthFacade {
             username: credentials.username,
             password: credentials.password
         };
-        console.log(inputModel);
         this.store.dispatch(actions.login({inputModel}));
         return this.store.select(selector.authenticatedUser);
     }

@@ -2,14 +2,14 @@ import { IComment } from 'src/app/features/comments/models/entities/comment';
 
 export interface ICommentOverviewState {
     results: IComment[],
-    requiresReload: boolean,
+    articleId: number,
     isLoading: boolean,
     error: string
 }
 
 export const ICommentOverviewStateInitialValue: ICommentOverviewState = {
     results: [],
-    requiresReload: true,
+    articleId: 0,
     isLoading: true,
     error: ''
 };

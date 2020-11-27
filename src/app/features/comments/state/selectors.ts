@@ -9,9 +9,9 @@ export const overviewResults= createSelector(
     (state) => state.overview.results
 );
 
-export const overviewRequiresReload = createSelector(
+export const overviewArticleId = createSelector(
     getCommentFeatureState,
-    (state) => state.overview.requiresReload
+    (state) => state.overview.articleId
 );
 
 export const overviewIsLoading = createSelector(

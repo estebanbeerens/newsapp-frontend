@@ -1,1 +1,15 @@
-<p>articles-details-shell works!</p>
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <news-articles-details-presenter
+        [authenticatedUser]="authenticatedUser$ | async"
+        [isLoading]="isLoading$ | async"
+        [article]="article$ | async"
+        [likes]="likes$ | async"
+        [comments]="comments$ | async"
+        [generalForm]="generalForm"
+        (onAddComment)="addComment($event)"
+        (onRemoveComment)="removeComment($event)"
+        (onAddLike)="addLike($event)"
+        (onRemoveLike)="removeLike($event)"
+    ></news-articles-details-presenter>
+</div>

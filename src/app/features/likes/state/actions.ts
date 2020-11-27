@@ -1,10 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { ILike } from 'src/app/features/likes/models/entities/like';
 
+// Set Article id
+export const setArticleId = createAction(
+    '[Comments] Set Article ID',
+    props<{ id: number }>()
+);
+
+
 // Get Likes by Article
 export const getByArticleId = createAction(
-    '[Likes] Get By Article',
-    props<{ id: number }>()
+    '[Likes] Get By Article'
 );
 
 export const getByArticleIdNoChanges = createAction(

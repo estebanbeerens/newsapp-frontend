@@ -1,1 +1,87 @@
-<p>articles-details-presenter works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="container">
+        <button mat-mini-fab class="mr-4" color="secondary" [routerLink]="['app/']"
+                matTooltip="Terug naar hoofdmenu">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2>Artikel: {{article.title}}</h2>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="container py-4">
+    <div class="border-bottom">
+        <h1>{{article.title}}</h1>
+        <h2>{{article.subTitle}}</h2>
+        <p>{{article.body}}</p>
+    </div>
+    <div class="border-bottom pt-3 pb-2">
+        <h4>
+            <span>{{likes.length}}&nbsp;Like<span *ngIf="likes.length != 1">s</span></span>
+            <span class="mx-3">|</span>
+            <span>{{comments.length}}&nbsp;Reactie<span *ngIf="comments.length != 1">s</span></span>
+        </h4>
+    </div>
+    <div *ngIf="authenticatedUser != userInitialValue" class="border-bottom">
+        <div class="row py-1 px-5">
+            <ng-container *ngIf="likeUserIds.includes(authenticatedUser.userID); else notLiked">
+                <button (click)="removeLike(authenticatedUser.userID)" type="button" color="warn" 
+                        mat-button class="w-100 col-6">
+                    <mat-icon class="mr-2">thumb_down</mat-icon>
+                    <span>Vind ik niet meer leuk ({{likes.length}})</span>
+                </button>
+            </ng-container>
+            <ng-template #notLiked>
+                <button (click)="addLike()" type="button" color="primary" 
+                         mat-button class="w-100 col-6">
+                    <mat-icon class="mr-2">thumb_up</mat-icon>
+                    <span>Vind ik leuk ({{likes.length}})</span>
+                </button>
+            </ng-template>
+            
+            <button (click)="formShow = true" type="button" mat-button class="w-100 col-6">
+                <mat-icon class="mr-2">comment</mat-icon>
+                <span>Reageer ({{comments.length}})</span>
+            </button>
+        </div>
+    </div>
+    <form *ngIf="formShow" class="border-bottom py-2" 
+          [formGroup]="generalForm" (ngSubmit)="addComment(generalForm.value)">
+
+        <mat-form-field appearance="outline" class="col-12 w-100">
+            <mat-label>Reactie</mat-label>
+    
+            <textarea matInput formControlName="body" type="text" placeholder="Typ hier je reactie..."
+                      cdkAutosizeMinRows="10"
+                      cdkTextareaAutosize
+            ></textarea>
+    
+            <mat-error *ngIf="generalForm.controls['body'].invalid">
+                Reactie is vereist
+            </mat-error>
+        </mat-form-field>
+        <div class="col">
+            <button (click)="formShow = false" mat-button type="button" class="col-6">
+                <span>Annuleer</span>
+            </button>
+            <button mat-raised-button type="submit" color="primary" class="col-6"
+                [disabled]="!generalForm.dirty || generalForm.invalid">
+                <mat-icon class="mr-2">comment</mat-icon>
+                <span>Bevestig</span>
+            </button>
+        </div>
+    </form>
+    <mat-card class="my-2"*ngFor="let comment of comments">
+        <mat-card-header class="py-1">
+            <mat-icon>comment</mat-icon>
+            <span class="news-menu-spacer"></span>
+            <button *ngIf="comment.userID == authenticatedUser.userID" mat-icon-button type="button"
+                    color="warn" matTooltip="Verwijder je reactie" (click)="removeComment(comment.commentID)">
+                <mat-icon>delete_outline</mat-icon>
+            </button>
+        </mat-card-header>
+        <div class="mx-5">
+            <mat-card-content>
+                <span>{{comment.body}}</span>
+            </mat-card-content>
+        </div>
+    </mat-card>
+</div>

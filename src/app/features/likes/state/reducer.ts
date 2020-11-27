@@ -5,6 +5,17 @@ import * as actions from './actions';
 export const likeReducer = createReducer<ILikeState>(
     ILikeStateInitialValue,
 
+    // Set article id
+    on(actions.setArticleId, (state, action): ILikeState => {
+      return {
+        ...state,
+        overview: {
+          ...state.overview,
+          articleId: action.id
+        }
+      };
+    }),
+
     // Overview
     on(actions.getByArticleId, (state): ILikeState => {
       return {
@@ -19,8 +30,8 @@ export const likeReducer = createReducer<ILikeState>(
       return {
         ...state,
         overview: {
+          ...state.overview,
           results: action.responseModel,
-          requiresReload: false,
           isLoading: false,
           error: ''
         }
@@ -31,7 +42,7 @@ export const likeReducer = createReducer<ILikeState>(
         ...state,
         overview: {
           results: [],
-          requiresReload: true,
+          articleId: 0,
           isLoading: false,
           error: action.error
         }
@@ -62,7 +73,6 @@ export const likeReducer = createReducer<ILikeState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
           isLoading: false,
           error: ''
         }
@@ -73,7 +83,7 @@ export const likeReducer = createReducer<ILikeState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
+          articleId: 0,
           isLoading: false,
           error: action.error
         }
@@ -95,7 +105,6 @@ export const likeReducer = createReducer<ILikeState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
           isLoading: false,
           error: ''
         }
@@ -106,7 +115,7 @@ export const likeReducer = createReducer<ILikeState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
+          articleId: 0,
           isLoading: false,
           error: action.error
         }

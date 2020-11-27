@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { IArticleStatus } from 'src/app/features/article-statuses/models/entities/article-status';
 import { IArticle } from 'src/app/features/articles/models/entities/article';
 import { ArticleFacade } from 'src/app/features/articles/state/facade';
+import { CommentFacade } from 'src/app/features/comments/state/facade';
+import { LikeFacade } from 'src/app/features/likes/state/facade';
 import { ITag } from 'src/app/features/tags/models/entities/tag';
 import { TagFacade } from 'src/app/features/tags/state/facade';
 
@@ -20,7 +22,7 @@ export class ArticlesOverviewShellComponent implements OnInit {
 
   constructor(
     private articleFacade: ArticleFacade,
-    private tagFacade: TagFacade,
+    private tagFacade: TagFacade
   ) { }
 
   ngOnInit(): void {

@@ -18,17 +18,12 @@ export class LikeEffects {
     getLikes$ = createEffect(() => {
         return this.actions$
             .pipe(
-                ofType(actions.getByArticleId),
+                ofType(actions.getByArticleId, actions.createSuccess, actions.removeSuccess),
                 withLatestFrom(
-                    this.store.pipe(select(selectors.overviewRequiresReload))
+                    this.store.pipe(select(selectors.overviewArticleId)),
                 ),
-                switchMap(([payload, requiresReload]) => {
-                    if (!requiresReload) {
-                        this.store.dispatch(actions.getByArticleIdNoChanges());
-                        return empty();
-                    }
-
-                    return this.likeApiService.getByArticleId(payload.id)
+                switchMap(([, articleId]) => {
+                    return this.likeApiService.getByArticleId(articleId)
                         .pipe(
                             map(responseModel => (actions.getByArticleIdSuccess({ responseModel }))),
                             catchError((error) => of(actions.getByArticleIdFailure({ error })))

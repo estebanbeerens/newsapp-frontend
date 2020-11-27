@@ -16,8 +16,12 @@ export class LikeFacade {
         return this.store.select(selectors.overviewIsLoading);
     }
 
-    getByArticleId(id: number): Observable<ILike[]> {
-        this.store.dispatch(actions.getByArticleId({ id }));
+    async setArticleId(id: number): Promise<void> {
+        await this.store.dispatch(actions.setArticleId({id}));
+    }
+
+    getByArticleId(): Observable<ILike[]> {
+        this.store.dispatch(actions.getByArticleId());
         return this.store.select(selectors.overviewResults);
     }
 

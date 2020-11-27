@@ -20,6 +20,7 @@ export class CommentApiService {
     }
     
     create(inputModel: IObject): Observable<IObject> {
+        console.log(inputModel);
         const requestUrl = `${this.baseUrl}`;
         
         return this.http.post<IObject>(requestUrl, inputModel);

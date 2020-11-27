@@ -8,7 +8,7 @@ import * as selectors from './selectors';
 @Injectable({
     providedIn: 'root',
 })
-export class LikeFacade {
+export class CommentFacade {
 
     constructor(private store: Store) {}
 
@@ -16,8 +16,12 @@ export class LikeFacade {
         return this.store.select(selectors.overviewIsLoading);
     }
 
-    getByArticleId(id: number): Observable<IComment[]> {
-        this.store.dispatch(actions.getByArticleId({ id }));
+    async setArticleId(id: number): Promise<void> {
+        await this.store.dispatch(actions.setArticleId({id}));
+    }
+
+    getByArticleId(): Observable<IComment[]> {
+        this.store.dispatch(actions.getByArticleId());
         return this.store.select(selectors.overviewResults);
     }
 

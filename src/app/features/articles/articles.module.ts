@@ -17,6 +17,11 @@ import { ArticlesInputShellComponent } from './components/articles-input/article
 import { ArticlesInputPresenterComponent } from './components/articles-input/articles-input-presenter/articles-input-presenter.component';
 import { TagEffects } from 'src/app/features/tags/state/effects';
 import { tagReducer } from 'src/app/features/tags/state/reducer';
+import { likeReducer } from 'src/app/features/likes/state/reducer';
+import { commentReducer } from 'src/app/features/comments/state/reducer';
+import { LikeEffects } from 'src/app/features/likes/state/effects';
+import { authReducer } from 'src/app/auth/state/reducer';
+import { CommentEffects } from 'src/app/features/comments/state/effects';
 
 
 @NgModule({
@@ -35,8 +40,14 @@ import { tagReducer } from 'src/app/features/tags/state/reducer';
     MatCardModule,
     StoreModule.forFeature('articles', articleReducer),
     StoreModule.forFeature('tags', tagReducer),
+    StoreModule.forFeature('likes', likeReducer),
+    StoreModule.forFeature('comments', commentReducer),
+    StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([ArticleEffects]),
-    EffectsModule.forFeature([TagEffects])
+    EffectsModule.forFeature([TagEffects]),
+    EffectsModule.forFeature([LikeEffects]),
+    EffectsModule.forFeature([TagEffects]),
+    EffectsModule.forFeature([CommentEffects])
   ],
   providers: [
     ArticleApiService

@@ -2,14 +2,14 @@ import { ILike } from 'src/app/features/likes/models/entities/like';
 
 export interface ILikeOverviewState {
     results: ILike[],
-    requiresReload: boolean,
+    articleId: number,
     isLoading: boolean,
     error: string
 }
 
 export const ILikeOverviewStateInitialValue: ILikeOverviewState = {
     results: [],
-    requiresReload: true,
+    articleId: 0,
     isLoading: true,
     error: ''
 };

@@ -5,6 +5,17 @@ import * as actions from './actions';
 export const commentReducer = createReducer<ICommentState>(
     ICommentStateInitialValue,
 
+    // Set article id
+    on(actions.setArticleId, (state, action): ICommentState => {
+      return {
+        ...state,
+        overview: {
+          ...state.overview,
+          articleId: action.id
+        }
+      };
+    }),
+
     // Overview
     on(actions.getByArticleId, (state): ICommentState => {
       return {
@@ -19,8 +30,8 @@ export const commentReducer = createReducer<ICommentState>(
       return {
         ...state,
         overview: {
+          ...state.overview,
           results: action.responseModel,
-          requiresReload: false,
           isLoading: false,
           error: ''
         }
@@ -30,8 +41,8 @@ export const commentReducer = createReducer<ICommentState>(
       return {
         ...state,
         overview: {
+          ...state.overview,
           results: [],
-          requiresReload: true,
           isLoading: false,
           error: action.error
         }
@@ -62,7 +73,6 @@ export const commentReducer = createReducer<ICommentState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
           isLoading: false,
           error: ''
         }
@@ -73,7 +83,7 @@ export const commentReducer = createReducer<ICommentState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
+          articleId: 0,
           isLoading: false,
           error: action.error
         }
@@ -95,7 +105,6 @@ export const commentReducer = createReducer<ICommentState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
           isLoading: false,
           error: ''
         }
@@ -106,7 +115,6 @@ export const commentReducer = createReducer<ICommentState>(
         ...state,
         overview: {
           ...state.overview,
-          requiresReload: true,
           isLoading: false,
           error: action.error
         }

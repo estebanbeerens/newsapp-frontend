@@ -37,7 +37,7 @@
                 </button>
             </ng-template>
             
-            <button (click)="formShow = true" type="button" mat-button class="w-100 col-6">
+            <button (click)="formShow = !formShow" type="button" mat-button class="w-100 col-6">
                 <mat-icon class="mr-2">comment</mat-icon>
                 <span>Reageer ({{comments.length}})</span>
             </button>

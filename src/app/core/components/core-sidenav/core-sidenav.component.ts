@@ -3,9 +3,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { AuthFacade } from 'src/app/auth/state/facade';
 import { RouteInfo } from 'src/app/core/models/routes/route-info';
-import { routes } from 'src/app/core/models/routes/routes';
+import { adminRoutes } from 'src/app/core/models/routes/admin-routes';
 import { CoreFacade } from 'src/app/core/state/facade';
 import { IUser } from 'src/app/features/users/models/entities/user';
+import { journalistRoutes } from 'src/app/core/models/routes/journalist-routes';
 
 @Component({
   selector: 'news-core-sidenav',
@@ -17,9 +18,8 @@ export class CoreSidenavComponent implements OnInit {
   authenticatedUser$: Observable<IUser>;
   sideNavToggled$: Observable<boolean>;
   mobileQuery: MediaQueryList;
-  userName: string = '';
   
-  public menuItems: RouteInfo[];
+  menuItems: RouteInfo[];
 
   constructor(
     private coreFacade: CoreFacade,
@@ -36,16 +36,18 @@ export class CoreSidenavComponent implements OnInit {
 
   ngOnInit(): void {
     this.sideNavToggled$ = this.coreFacade.getSideNavToggled();
-    this.menuItems = routes.filter(menuItem => menuItem);
     this.authenticatedUser$ = this.authFacade.getCurrentUser();
-    this.userName = this.getUsername();
+    this.getUsername();
   }
 
-  getUsername(): string {
+  getUsername(): void {
     this.authFacade.getCurrentUser().subscribe((user) => {
-      return user.firstName + ' ' + user.lastName;
+      if (user.roleID == 2) {
+        this.menuItems = journalistRoutes.filter(menuItem => menuItem);
+      } else {
+        this.menuItems = adminRoutes.filter(menuItem => menuItem);
+      }
     });
-    return 'Niet ingelogd'
   }
 
   onBackdropClick(): void {

@@ -7,7 +7,7 @@ import { IUser } from 'src/app/features/users/models/entities/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class JournalistGuard implements CanActivate {
 
   authenticatedUser$: Observable<IUser>;
 
@@ -18,7 +18,7 @@ export class AdminGuard implements CanActivate {
     this.authFacade.getCurrentUser().subscribe((user) => {
       userCopy = user
     });
-    if (userCopy.roleID == 3) {
+    if (userCopy.roleID == 2) {
       return true;
     } else {
       this.router.navigate(['/app']);

@@ -1,7 +1,7 @@
 <mat-toolbar class="news-toolbar">
     <mat-toolbar-row>
 
-        <button mat-icon-button *ngIf="authenticatedUser.role.name == 'Admin'" (click)="toggle();">
+        <button mat-icon-button *ngIf="authenticatedUser.roleID == 2 || authenticatedUser.roleID == 3" (click)="toggle();">
             <ng-container *ngIf="sideNavToggled; then clear; else menu"></ng-container>
             <ng-template #clear>
                 <mat-icon>clear</mat-icon>

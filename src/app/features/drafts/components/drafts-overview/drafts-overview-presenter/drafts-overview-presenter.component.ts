@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { IArticle } from 'src/app/features/articles/models/entities/article';
+import { IUser } from 'src/app/features/users/models/entities/user';
 
 @Component({
   selector: 'news-drafts-overview-presenter',
@@ -11,6 +12,7 @@ import { IArticle } from 'src/app/features/articles/models/entities/article';
 })
 export class DraftsOverviewPresenterComponent implements AfterViewInit, OnChanges {
   
+  @Input() authenticatedUser: IUser;
   @Input() articles: IArticle[];
 
   @Output() onEdit = new EventEmitter<number>();
@@ -39,7 +41,7 @@ export class DraftsOverviewPresenterComponent implements AfterViewInit, OnChange
   initDataSource(articles: IArticle[]): void {
     const articlesFiltered: IArticle[] = [];
     articles.forEach((article) => {
-      if (article.articleStatusID == 1) {
+      if (article.articleStatusID == 1 && article.userID == this.authenticatedUser.userID) {
         articlesFiltered.push(article);
       }
     });

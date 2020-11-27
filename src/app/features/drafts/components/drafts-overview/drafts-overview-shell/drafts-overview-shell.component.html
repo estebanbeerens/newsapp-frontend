@@ -5,6 +5,7 @@
         (clickedAdd)="create()"
     ></news-shared-toolbar>
     <news-drafts-overview-presenter
+        [authenticatedUser]="authenticatedUser$ | async"
         [articles]="articles$ | async"
         (onEdit)="edit($event)"
         (onRemove)="remove($event)"

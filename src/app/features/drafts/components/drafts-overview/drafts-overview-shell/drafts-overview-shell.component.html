@@ -1,0 +1,12 @@
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <news-shared-toolbar
+        [title]="title"
+        (clickedAdd)="create()"
+    ></news-shared-toolbar>
+    <news-drafts-overview-presenter
+        [articles]="articles$ | async"
+        (onEdit)="edit($event)"
+        (onRemove)="remove($event)"
+    ></news-drafts-overview-presenter>
+</div>

@@ -1,0 +1,10 @@
+<div class="bg-white shadow">
+    <news-drafts-input-presenter
+        [authenticatedUser]="authenticatedUser$ | async"
+        [tags]="tags$ | async"
+        [article]="article$ | async"
+        [generalForm]="generalForm"
+        [isNew]="isNew"
+        (submitForm)="submitForm($event)"
+    ></news-drafts-input-presenter>
+</div>

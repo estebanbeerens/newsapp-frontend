@@ -11,8 +11,6 @@ import { ITag } from 'src/app/features/tags/models/entities/tag';
   styleUrls: ['./drafts-input-presenter.component.scss']
 })
 export class DraftsInputPresenterComponent {
-  
-  selected = new FormControl(null);
 
   articleStatuses: IArticleStatus[] = [
     { articleStatusID: 1, name: "Draft" },

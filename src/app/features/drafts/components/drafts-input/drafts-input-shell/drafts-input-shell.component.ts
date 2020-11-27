@@ -41,9 +41,9 @@ export class DraftsInputShellComponent implements OnInit {
     this.article$ = this.draftFacade.getDetails();
     this.tags$ = this.tagFacade.getAll();
 
-    this.article$.subscribe((tag) => {
-      this.loadForm(tag);
-      this.defineIsNew(tag);
+    this.article$.subscribe((article) => {
+      this.loadForm(article);
+      this.defineIsNew(article);
     });
   }
   

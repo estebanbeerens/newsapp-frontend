@@ -23,14 +23,14 @@
     <div *ngIf="authenticatedUser != userInitialValue" class="border-bottom">
         <div class="row py-1 px-5">
             <ng-container *ngIf="likeUserIds.includes(authenticatedUser.userID); else notLiked">
-                <button (click)="removeLike(authenticatedUser.userID)" type="button" color="warn" 
+                <button (click)="removeLike(authenticatedUser.userID)" type="button" color="primary" 
                         mat-button class="w-100 col-6">
-                    <mat-icon class="mr-2">thumb_down</mat-icon>
-                    <span>Vind ik niet meer leuk ({{likes.length}})</span>
+                    <mat-icon class="mr-2">thumb_up</mat-icon>
+                    <span>Vind ik leuk ({{likes.length}})</span>
                 </button>
             </ng-container>
             <ng-template #notLiked>
-                <button (click)="addLike()" type="button" color="primary" 
+                <button (click)="addLike()" type="button"
                          mat-button class="w-100 col-6">
                     <mat-icon class="mr-2">thumb_up</mat-icon>
                     <span>Vind ik leuk ({{likes.length}})</span>

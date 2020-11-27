@@ -13,8 +13,6 @@ import { MatCardModule } from '@angular/material/card';
 import { ArticleApiService } from 'src/app/features/articles/services/article-api.service';
 import { ArticleEffects } from 'src/app/features/articles/state/effects';
 import { articleReducer } from 'src/app/features/articles/state/reducer';
-import { ArticlesInputShellComponent } from './components/articles-input/articles-input-shell/articles-input-shell.component';
-import { ArticlesInputPresenterComponent } from './components/articles-input/articles-input-presenter/articles-input-presenter.component';
 import { TagEffects } from 'src/app/features/tags/state/effects';
 import { tagReducer } from 'src/app/features/tags/state/reducer';
 import { likeReducer } from 'src/app/features/likes/state/reducer';
@@ -29,9 +27,7 @@ import { CommentEffects } from 'src/app/features/comments/state/effects';
     ArticlesDetailsShellComponent, 
     ArticlesDetailsPresenterComponent, 
     ArticlesOverviewPresenterComponent, 
-    ArticlesOverviewShellComponent, 
-    ArticlesInputShellComponent, 
-    ArticlesInputPresenterComponent
+    ArticlesOverviewShellComponent
   ],
   imports: [
     CommonModule,

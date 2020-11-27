@@ -17,7 +17,6 @@ import { IUser } from 'src/app/features/users/models/entities/user';
 })
 export class DraftsInputShellComponent implements OnInit {
 
-  authenticatedUser$: Observable<IUser>;
   isLoading$: Observable<boolean>;
   article$: Observable<IArticle>;
   tags$: Observable<ITag[]>;
@@ -29,7 +28,6 @@ export class DraftsInputShellComponent implements OnInit {
   constructor(
     private draftFacade: DraftFacade,
     private tagFacade: TagFacade,
-    private authFacade: AuthFacade,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
@@ -42,7 +40,6 @@ export class DraftsInputShellComponent implements OnInit {
     this.isLoading$ = this.draftFacade.getDetailsIsLoading();
     this.article$ = this.draftFacade.getDetails();
     this.tags$ = this.tagFacade.getAll();
-    this.authenticatedUser$ = this.authFacade.getCurrentUser();
 
     this.article$.subscribe((tag) => {
       this.loadForm(tag);

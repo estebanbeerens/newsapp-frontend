@@ -14,6 +14,11 @@ export class AuthFacade {
 
     constructor(private store: Store) { }
 
+    checkLogin(): Observable<IUser> {
+        this.store.dispatch(actions.checkLogin());
+        return this.store.select(selector.authenticatedUser);
+    }
+
     getCurrentUser(): Observable<IUser> {
         return this.store.select(selector.authenticatedUser);
     }

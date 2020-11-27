@@ -1,10 +1,27 @@
 import { createReducer, on } from '@ngrx/store';
 import { IAuthState, IAuthStateInitialValue } from 'src/app/auth/models/state-models/auth.state';
-import { IUserInitialValue } from 'src/app/features/users/models/entities/user';
+import { IUser, IUserInitialValue } from 'src/app/features/users/models/entities/user';
 import * as actions from './actions';
 
 export const authReducer = createReducer<IAuthState>(
     IAuthStateInitialValue,
+
+    on(actions.checkLogin, (state): IAuthState => {
+
+        // We get the user from local storage
+        let user: IUser = IUserInitialValue;
+
+        if  (localStorage.getItem('newsapp.user')) {
+            user = JSON.parse(localStorage.getItem('newsapp.user'));
+        }
+
+        return {
+            ...state,
+            authenticatedUser: user,
+            error: '',
+            isLoading: false,
+        }
+    }),
     
     on(actions.login, (state): IAuthState => {
         return {
@@ -17,6 +34,8 @@ export const authReducer = createReducer<IAuthState>(
 
         // We store our token in local storage
         localStorage.setItem('newsapp.accessToken', action.responseModel.token);
+        // We store the user in local storage
+        localStorage.setItem('newsapp.user', JSON.stringify(action.responseModel));
 
         return {
             ...state,
@@ -36,6 +55,10 @@ export const authReducer = createReducer<IAuthState>(
 
     // Logout
     on(actions.logout, (state): IAuthState => {
+
+        //  We remove the user from local storage
+        localStorage.removeItem('newsapp.user');
+
         return {
             ...state,
             authenticatedUser: IUserInitialValue,

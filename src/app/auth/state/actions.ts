@@ -1,6 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { IUser } from 'src/app/features/users/models/entities/user';
 
+// Check login
+export const checkLogin = createAction(
+    '[Auth] Check Login',
+);
+
+
 // Login
 export const login = createAction(
     '[Auth] Login',

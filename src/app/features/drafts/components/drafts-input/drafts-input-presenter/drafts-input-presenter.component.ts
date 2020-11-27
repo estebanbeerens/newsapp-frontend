@@ -4,6 +4,7 @@ import { IArticleStatus } from 'src/app/features/article-statuses/models/entitie
 import { IArticle, IArticleInitialValue } from 'src/app/features/articles/models/entities/article';
 import { IArticleFormModel } from 'src/app/features/articles/models/form-models/draft-form-model';
 import { ITag } from 'src/app/features/tags/models/entities/tag';
+import { IUser } from 'src/app/features/users/models/entities/user';
 
 @Component({
   selector: 'news-drafts-input-presenter',
@@ -16,7 +17,8 @@ export class DraftsInputPresenterComponent {
     { articleStatusID: 1, name: "Draft" },
     { articleStatusID: 2, name: "To review" },
   ];
-
+  
+  @Input() authenticatedUser: IUser;
   @Input() tags: ITag[];
   @Input() article: IArticle;
   @Input() isNew: boolean;
@@ -28,12 +30,12 @@ export class DraftsInputPresenterComponent {
     const article: IArticle = {
       articleID: this.article.articleID,
       articleStatusID: data.articleStatusID,
+      userID: this.authenticatedUser.userID,
       tagID: data.tagID,
       title: data.title,
       subTitle: data.subTitle,
       shortSummary: data.shortSummary,
       body: data.body,
-      userID: null,
       articleStatus: null,
       tag: null,
       user: null

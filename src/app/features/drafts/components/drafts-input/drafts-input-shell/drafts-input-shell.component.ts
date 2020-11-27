@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthFacade } from 'src/app/auth/state/facade';
 import { IArticle } from 'src/app/features/articles/models/entities/article';
 import { IArticleFormModel } from 'src/app/features/articles/models/form-models/draft-form-model';
@@ -15,8 +15,9 @@ import { IUser } from 'src/app/features/users/models/entities/user';
   templateUrl: './drafts-input-shell.component.html',
   styleUrls: ['./drafts-input-shell.component.scss']
 })
-export class DraftsInputShellComponent implements OnInit {
+export class DraftsInputShellComponent implements OnInit, OnDestroy {
 
+  authenticatedUser$: Observable<IUser>;
   isLoading$: Observable<boolean>;
   article$: Observable<IArticle>;
   tags$: Observable<ITag[]>;
@@ -24,10 +25,12 @@ export class DraftsInputShellComponent implements OnInit {
   generalForm: FormGroup;
   selectedArticleId: number;
   isNew: boolean;
+  sub: Subscription;
 
   constructor(
     private draftFacade: DraftFacade,
     private tagFacade: TagFacade,
+    private authFacade: AuthFacade,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
@@ -40,10 +43,11 @@ export class DraftsInputShellComponent implements OnInit {
     this.isLoading$ = this.draftFacade.getDetailsIsLoading();
     this.article$ = this.draftFacade.getDetails();
     this.tags$ = this.tagFacade.getAll();
+    this.authenticatedUser$ = this.authFacade.getCurrentUser();
 
-    this.article$.subscribe((article) => {
-      this.loadForm(article);
-      this.defineIsNew(article);
+    this.sub = this.article$.subscribe((user) => {
+      this.loadForm(user);
+      this.defineIsNew(user);
     });
   }
   
@@ -73,7 +77,11 @@ export class DraftsInputShellComponent implements OnInit {
     } else {
       this.draftFacade.update(this.selectedArticleId, article);
     }
-    this.router.navigate(['/app/drafts'])
+    this.router.navigate(['/app/drafts']);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

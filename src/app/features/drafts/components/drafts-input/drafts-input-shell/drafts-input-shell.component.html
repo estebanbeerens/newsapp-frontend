@@ -1,5 +1,6 @@
 <div class="bg-white shadow">
     <news-drafts-input-presenter
+        [authenticatedUser]="authenticatedUser$ | async"
         [tags]="tags$ | async"
         [article]="article$ | async"
         [generalForm]="generalForm"

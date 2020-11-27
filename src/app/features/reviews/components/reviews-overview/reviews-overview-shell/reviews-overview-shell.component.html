@@ -1,0 +1,13 @@
+<news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
+<div class="bg-white shadow">
+    <mat-toolbar color="primary">
+        <mat-row>
+            {{title}}
+        </mat-row>
+    </mat-toolbar>
+    <news-reviews-overview-presenter
+        [articles]="articles$ | async"
+        (onEdit)="edit($event)"
+        (onRemove)="remove($event)"
+    ></news-reviews-overview-presenter>
+</div>

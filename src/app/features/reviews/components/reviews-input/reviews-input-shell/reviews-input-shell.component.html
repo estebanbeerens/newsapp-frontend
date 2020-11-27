@@ -1,0 +1,9 @@
+<div class="bg-white shadow">
+    <news-reviews-input-presenter
+        [articleStatuses]="articleStatuses$ | async"
+        [tags]="tags$ | async"
+        [article]="article$ | async"
+        [generalForm]="generalForm"
+        (submitForm)="submitForm($event)"
+    ></news-reviews-input-presenter>
+</div>

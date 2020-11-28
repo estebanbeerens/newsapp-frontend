@@ -1,9 +1,9 @@
 <news-shared-spinner class="news-spinner-overlay" *ngIf="isLoading$ | async"></news-shared-spinner>
 <div class="bg-white shadow">
     <mat-toolbar color="primary">
-        <mat-row>
-            {{title}}
-        </mat-row>
+        <mat-toolbar-row>
+            <span>{{title}}</span>
+        </mat-toolbar-row>
     </mat-toolbar>
     <news-reviews-overview-presenter
         [articles]="articles$ | async"
